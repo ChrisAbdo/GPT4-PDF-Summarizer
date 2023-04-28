@@ -180,9 +180,11 @@ const Home: NextPage = () => {
                             aria-label="Understanding Level"
                           >
                             <span className="sr-only">Understanding Level</span>
-                            <SelectTrigger>
+                            <SelectTrigger aria-label="Understanding Level">
                               <SelectValue placeholder="Select" />
-
+                              <span className="sr-only">
+                                Understanding Level
+                              </span>
                               <SelectContent position="popper">
                                 <SelectItem value="basic understanding">
                                   Basic Understanding
