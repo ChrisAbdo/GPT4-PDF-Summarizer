@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "next-themes";
-import { Laptop, Moon, Sun, CalendarDays, Github } from "lucide-react";
+import { Laptop, Moon, Sun, CalendarDays, Github, Stars } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   HoverCard,
@@ -31,11 +31,7 @@ export default function Navbar() {
             <HoverCard>
               <HoverCardTrigger asChild>
                 <Button variant="link">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
-                  />
+                  <Stars className="h-5 w-5" />
                   <h1 className="text-2xl font-bold">AI-PDF-SUMMARY</h1>
                 </Button>
               </HoverCardTrigger>
