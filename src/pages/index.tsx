@@ -22,20 +22,25 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import Head from "next/head";
-import { Loader2, Terminal } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import Footer from "@/components/footer";
 
-interface GenerateBioResponse {
+interface SummaryResponse {
   text: string;
 }
 
 const Home: NextPage = () => {
   const { toast } = useToast();
+
   const [loading, setLoading] = useState<boolean>(false);
-  const [generatedBios, setGeneratedBios] = useState<string>("");
+  const [generatedSummary, setGeneratedSummary] = useState<string>("");
   const [pdfText, setPdfText] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
   const [selectedIntensity, setSelectedIntensity] = useState<string>("");
+  const summaryRef = useRef<HTMLDivElement | null>(null);
+
+  const prompt = `Please summarize the following text with ${selectedIntensity} intensity:
+${pdfText}`;
 
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const newFile = e.target.files?.[0];
@@ -59,7 +64,7 @@ const Home: NextPage = () => {
       });
 
       if (res.ok) {
-        const data: GenerateBioResponse = await res.json();
+        const data: SummaryResponse = await res.json();
         console.log("Extracted text:", data.text);
         setPdfText(data.text);
       } else {
@@ -70,7 +75,7 @@ const Home: NextPage = () => {
 
   const resetStates = () => {
     setLoading(false);
-    setGeneratedBios("");
+    setGeneratedSummary("");
     setPdfText("");
     setFile(null);
     setSelectedIntensity("");
@@ -80,23 +85,9 @@ const Home: NextPage = () => {
     });
   };
 
-  const bioRef = useRef<HTMLDivElement | null>(null);
-
-  const scrollToBios = () => {
-    if (bioRef.current !== null) {
-      bioRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const prompt =
-    "please summarize the following text with" +
-    selectedIntensity +
-    "intensity: " +
-    pdfText;
-
-  const generateBio = async (e: FormEvent) => {
+  const summarizePDF = async (e: FormEvent) => {
     e.preventDefault();
-    setGeneratedBios("");
+    setGeneratedSummary("");
     setLoading(true);
     const response = await fetch("/api/generate", {
       method: "POST",
@@ -125,9 +116,9 @@ const Home: NextPage = () => {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
-      setGeneratedBios((prev) => prev + chunkValue);
+      setGeneratedSummary((prev) => prev + chunkValue);
     }
-    scrollToBios();
+
     setLoading(false);
   };
 
@@ -157,7 +148,7 @@ const Home: NextPage = () => {
                 </CardHeader>
 
                 <CardContent>
-                  {!generatedBios && !loading && (
+                  {!generatedSummary && !loading && (
                     <form>
                       <div className="grid w-full items-center gap-4">
                         <div className="flex flex-col space-y-1.5">
@@ -202,15 +193,15 @@ const Home: NextPage = () => {
                     </form>
                   )}
 
-                  {generatedBios && (
+                  {generatedSummary && (
                     <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
                       <div
                         className="rounded-xl shadow-md p-4 transition cursor-copy border"
                         onClick={() => {
-                          navigator.clipboard.writeText(generatedBios);
+                          navigator.clipboard.writeText(generatedSummary);
                         }}
                       >
-                        <p>{generatedBios}</p>
+                        <p>{generatedSummary}</p>
                       </div>
                     </div>
                   )}
@@ -223,7 +214,7 @@ const Home: NextPage = () => {
                   {!loading && (
                     <Button
                       disabled={!pdfText || !selectedIntensity}
-                      onClick={(e) => generateBio(e)}
+                      onClick={(e) => summarizePDF(e)}
                     >
                       Summarize
                     </Button>
