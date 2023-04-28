@@ -177,7 +177,6 @@ const Home: NextPage = () => {
                             onValueChange={(value) =>
                               setSelectedIntensity(value)
                             }
-                            aria-label="Understanding Level"
                           >
                             <span className="sr-only">Understanding Level</span>
                             <SelectTrigger aria-label="Understanding Level">
