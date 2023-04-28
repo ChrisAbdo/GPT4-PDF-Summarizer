@@ -94,6 +94,7 @@ export default function Navbar() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost">
+                <span className="sr-only">Change theme</span>
                 <Sun className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>

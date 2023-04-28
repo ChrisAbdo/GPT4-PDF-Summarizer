@@ -180,6 +180,7 @@ const Home: NextPage = () => {
                           >
                             <SelectTrigger>
                               <SelectValue placeholder="Select" />
+
                               <SelectContent position="popper">
                                 <SelectItem value="basic understanding">
                                   Basic Understanding
