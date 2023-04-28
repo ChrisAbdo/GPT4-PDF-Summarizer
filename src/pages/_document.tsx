@@ -22,8 +22,14 @@ class MyDocument extends Document {
             name="twitter:description"
             content="Summarize any PDF in seconds."
           />
-          <meta property="og:image" content="/image.jpeg" />
-          <meta name="twitter:image" content="/image.jpeg" />
+          <meta
+            property="og:image"
+            content="https://pbs.twimg.com/media/FuxomaCX0AIGbcC?format=jpg&name=small"
+          />
+          <meta
+            name="twitter:image"
+            content="https://pbs.twimg.com/media/FuxomaCX0AIGbcC?format=jpg&name=small"
+          />
         </Head>
         <body>
           <Main />
