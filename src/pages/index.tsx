@@ -179,6 +179,7 @@ const Home: NextPage = () => {
                             }
                             aria-label="Understanding Level"
                           >
+                            <span className="sr-only">Understanding Level</span>
                             <SelectTrigger>
                               <SelectValue placeholder="Select" />
 
