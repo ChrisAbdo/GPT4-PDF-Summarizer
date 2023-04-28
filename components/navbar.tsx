@@ -89,7 +89,9 @@ export default function Navbar() {
         <div className="lg:flex lg:flex-1 lg:justify-end lg:space-x-2">
           <Button
             variant="outline"
-            onClick={() => window.open("https://www.github.com/chrisabdo")}
+            onClick={() =>
+              window.open("https://github.com/ChrisAbdo/GPT4-PDF-Summarizer")
+            }
           >
             <Github className="mr-2 h-4 w-4" /> Star on Github
           </Button>

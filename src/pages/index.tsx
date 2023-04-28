@@ -23,6 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Head from "next/head";
 import { Loader2, Terminal } from "lucide-react";
+import Footer from "@/components/footer";
 
 interface GenerateBioResponse {
   text: string;
@@ -234,6 +235,8 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
