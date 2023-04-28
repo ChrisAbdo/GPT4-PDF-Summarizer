@@ -32,7 +32,9 @@ export default function Navbar() {
               <HoverCardTrigger asChild>
                 <Button variant="link">
                   <Stars className="h-5 w-5" />
-                  <h1 className="text-2xl font-bold">AI-PDF-SUMMARY</h1>
+                  <h1 className="font-bold text-md sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl">
+                    AI-PDF-SUMMARY
+                  </h1>
                 </Button>
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
@@ -82,7 +84,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        <div className="lg:flex lg:flex-1 lg:justify-end lg:space-x-2">
+        <div className="flex flex-1 justify-end space-x-2">
           <Button
             variant="outline"
             onClick={() =>
