@@ -24,6 +24,12 @@ import { Button } from "@/components/ui/button";
 import Head from "next/head";
 import { Loader2 } from "lucide-react";
 import Footer from "@/components/footer";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface SummaryResponse {
   text: string;
@@ -137,6 +143,23 @@ ${pdfText}`;
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
               Summarize any PDF in seconds
             </h1>
+            <p className="mt-5 text-xl text-gray-500">
+              *** Still in beta. Some PDFs may not work. ***
+            </p>
+            <span className="mt-5 text-xl text-gray-500">
+              Please open the{" "}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <span className="underline">console</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>CMD + OPTN + J</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>{" "}
+              to see if the text properly extracted.
+            </span>
           </div>
 
           <div className="mt-10 sm:mt-12">
